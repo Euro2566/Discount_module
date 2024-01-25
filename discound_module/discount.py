@@ -3,6 +3,10 @@ class Discount:
         self.Coupon = []
 
     def addCoupon(self, campain = "fixed amount" , category = "coupon", item_type = [], every = 0, discount = 0, reduce = 0):
+        for Category in self.Coupon:
+            if category == Category["category"]:
+                return "Repeat discounts available"
+
         if category == "coupon":
         
             if (campain == "fixed amount" or campain == "percentage discount") and reduce > 0:
@@ -78,16 +82,15 @@ class Discount:
 
         return total
 
-'''
+
 iteme  = [{"name":"T-Shirt", "price": 350, "type": "clothing"},{"name":"Hat", "price": 250, "type": "accessories"},{"name":"Belt", "price": 230, "type": "accessories"}]
 
 dis = Discount()
 
 dis.addCoupon(campain = "fixed amount", category = "coupon", reduce = 50)
-dis.addCoupon(campain = "percentage discount", category = "coupon", reduce = 50)
+print(dis.addCoupon(campain = "percentage discount", category = "coupon", reduce = 50))
 dis.addCoupon(campain = "percentage discount by item category",  category = "on top", item_type = ["clothing","accessories","electronics"], reduce = 15)
-dis.addCoupon(campain = "discount by point", category = "on top")
+print(dis.addCoupon(campain = "discount by point", category = "on top"))
 dis.addCoupon(campain = "special campaigns", category = "seasonnal", every = 300, discount = 40)
 
 print(dis.calcalate(iteme,68))
-'''
